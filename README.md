@@ -8,8 +8,8 @@ A very simple Progressive Web App to help calculate how much to tip at a restaur
 
 ```
 yarn build
-rm -rf pages
-mv build pages
+rm -rf docs
+mv build docs
 git add --all
 git commit --message "Publish"
 git push
