@@ -1,5 +1,22 @@
 # Tip Calculator
 
+## Overview
+
+A very simple Progressive Web App to help calculate how much to tip at a restaurant.
+
+## How to publish
+
+```
+yarn build
+rm -rf docs
+mv build docs
+git add --all
+git commit --message "Publish"
+git push
+```
+
+# Initial Readme (to be removed)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
