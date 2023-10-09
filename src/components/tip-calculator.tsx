@@ -46,7 +46,7 @@ function humanFriendlyNumber(input: string | number) {
   return Number(input).toFixed(2);
 }
 
-export function TipsCalculator() {
+export function TipCalculator() {
   const [css, theme] = useStyletron();
   const [subtotal, setSubtotal] = useState<string>("");
 

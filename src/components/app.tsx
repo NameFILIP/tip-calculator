@@ -2,7 +2,7 @@ import { Client as Styletron } from "styletron-engine-atomic";
 import { Provider as StyletronProvider } from "styletron-react";
 import { LightTheme, BaseProvider, styled } from "baseui";
 import { HeadingMedium } from "baseui/typography";
-import { TipsCalculator } from "./tips-calculator";
+import { TipCalculator } from "./tip-calculator";
 
 const engine = new Styletron();
 
@@ -20,7 +20,7 @@ export function App() {
       <BaseProvider theme={LightTheme}>
         <Centered>
           <HeadingMedium>Tips Calculator</HeadingMedium>
-          <TipsCalculator />
+          <TipCalculator />
         </Centered>
       </BaseProvider>
     </StyletronProvider>
