@@ -65,6 +65,7 @@ export function TipCalculator() {
     >
       <FormControl label="Subtotal">
         <Input
+          inputMode="decimal"
           value={subtotal}
           onChange={(e) => {
             const numbersOnly = keepNumbersAndDecimal(e.target.value);
@@ -89,6 +90,7 @@ export function TipCalculator() {
       <FormControl label="Tax">
         <div className={css({ display: "flex" })}>
           <Input
+            inputMode="decimal"
             value={tipAmount}
             onChange={(e) => {
               const numbersOnly = keepNumbersAndDecimal(e.target.value);
@@ -103,6 +105,7 @@ export function TipCalculator() {
             overrides={leftInputOverrides}
           />
           <Input
+            inputMode="decimal"
             value={tipPercent}
             onChange={(e) => {
               const numbersOnly = keepNumbersAndDecimal(e.target.value);
@@ -125,6 +128,7 @@ export function TipCalculator() {
       <FormControl label="Tip">
         <div className={css({ display: "flex" })}>
           <Input
+            inputMode="decimal"
             value={taxAmount}
             onChange={(e) => {
               const numbersOnly = keepNumbersAndDecimal(e.target.value);
@@ -139,6 +143,7 @@ export function TipCalculator() {
             overrides={leftInputOverrides}
           />
           <Input
+            inputMode="decimal"
             value={taxPercent}
             onChange={(e) => {
               const numbersOnly = keepNumbersAndDecimal(e.target.value);
