@@ -2,7 +2,7 @@
 
 ## Overview
 
-A very simple Progressive Web App to help calculate how much to tip at a restaurant.
+A simple Progressive Web App to help calculate how much to tip at a restaurant: https://namefilip.github.io/tip-calculator/
 
 ## How to publish
 
