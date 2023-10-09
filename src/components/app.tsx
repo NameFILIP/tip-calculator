@@ -19,7 +19,7 @@ export function App() {
     <StyletronProvider value={engine}>
       <BaseProvider theme={LightTheme}>
         <Centered>
-          <HeadingMedium>Tips Calculator</HeadingMedium>
+          <HeadingMedium>Tip Calculator</HeadingMedium>
           <TipCalculator />
         </Centered>
       </BaseProvider>
