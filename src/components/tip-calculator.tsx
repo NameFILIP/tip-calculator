@@ -56,6 +56,10 @@ export function TipCalculator() {
   const [tipAmount, setTipAmount] = useState<string>("");
   const [tipPercent, setTipPercent] = useLocalStorage("tipPercent", "");
 
+  const [persons, setPersons] = useState<string>("1");
+
+  const total = getTotal({ subtotal, tipAmount, taxAmount });
+
   return (
     <div
       className={css({
@@ -87,6 +91,7 @@ export function TipCalculator() {
           }}
         />
       </FormControl>
+
       <FormControl label="Tax">
         <div className={css({ display: "flex" })}>
           <Input
@@ -125,6 +130,7 @@ export function TipCalculator() {
           />
         </div>
       </FormControl>
+
       <FormControl label="Tip">
         <div className={css({ display: "flex" })}>
           <Input
@@ -163,8 +169,29 @@ export function TipCalculator() {
           />
         </div>
       </FormControl>
+
       <FormControl label="Total">
-        <Input value={getTotal({ subtotal, tipAmount, taxAmount })} />
+        <Input value={total} />
+      </FormControl>
+
+      <FormControl label="Per person">
+        <div className={css({ display: "flex" })}>
+          <Input
+            value={
+              total ? humanFriendlyNumber(Number(total) / Number(persons)) : ""
+            }
+            startEnhancer="$"
+            overrides={leftInputOverrides}
+          />
+          <Input
+            inputMode="numeric"
+            value={persons}
+            onChange={(e) => {
+              setPersons(e.target.value);
+            }}
+            overrides={rightInputOverrides}
+          />
+        </div>
       </FormControl>
     </div>
   );
