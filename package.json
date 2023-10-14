@@ -37,7 +37,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "publish": "npm run build && rm -rf docs && mv build docs && git add --all && git commit --message 'Publish' && git push"
   },
   "eslintConfig": {
     "extends": [

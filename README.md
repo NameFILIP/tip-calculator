@@ -14,10 +14,5 @@
 ## How to publish
 
 ```
-npm run build
-rm -rf docs
-mv build docs
-git add --all
-git commit --message "Publish"
-git push
+npm run publish
 ```
