@@ -30,20 +30,21 @@ function getTotal({
   subtotal: string;
   tipAmount: string;
   taxAmount: string;
-}) {
+}): number | null {
   if (subtotal === "" || tipAmount === "" || taxAmount === "") {
-    return "";
+    return null;
   }
-  const rawSum = Number(subtotal) + Number(tipAmount) + Number(taxAmount);
-  return rawSum.toFixed(2);
+  return Number(subtotal) + Number(tipAmount) + Number(taxAmount);
 }
 
 function keepNumbersAndDecimal(input: string) {
   return input.replace(/[^0-9.]/g, "");
 }
 
-function humanFriendlyNumber(input: string | number) {
-  return Number(input).toFixed(2);
+function humanFriendlyNumber(input: string | number): string {
+  const numInput = Number(input);
+  // Round up the last cent which is how restaurants calculate it
+  return (Math.ceil(numInput * 100) / 100).toFixed(2);
 }
 
 export function TipCalculator() {
@@ -117,10 +118,8 @@ export function TipCalculator() {
               setTipPercent(numbersOnly);
               if (subtotal !== "") {
                 setTipAmount(
-                  String(
-                    humanFriendlyNumber(
-                      (Number(numbersOnly) / 100) * Number(subtotal)
-                    )
+                  humanFriendlyNumber(
+                    (Number(numbersOnly) / 100) * Number(subtotal)
                   )
                 );
               }
@@ -156,10 +155,8 @@ export function TipCalculator() {
               setTaxPercent(numbersOnly);
               if (subtotal !== "") {
                 setTaxAmount(
-                  String(
-                    humanFriendlyNumber(
-                      (Number(numbersOnly) / 100) * Number(subtotal)
-                    )
+                  humanFriendlyNumber(
+                    (Number(numbersOnly) / 100) * Number(subtotal)
                   )
                 );
               }
@@ -171,7 +168,7 @@ export function TipCalculator() {
       </FormControl>
 
       <FormControl label="Total">
-        <Input value={total} />
+        <Input value={total ? humanFriendlyNumber(total) : ""} />
       </FormControl>
 
       <FormControl label="Per person">
