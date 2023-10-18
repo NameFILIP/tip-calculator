@@ -5,11 +5,18 @@ import { TipCalculator } from "./tip-calculator";
 test("TipCalculator", () => {
   const { asFragment, container } = render(<TipCalculator />);
 
-  //   console.log(getElementById("subtotal"));
-
-  //   fireEvent.change(screen.getByLabelText("Subtotal"), {
-  //     target: { value: "100" },
-  //   });
+  fireEvent.change(screen.getByLabelText("Subtotal"), {
+    target: { value: "100" },
+  });
+  fireEvent.change(screen.getByLabelText("Tax percentage"), {
+    target: { value: "8.875" },
+  });
+  fireEvent.change(screen.getByLabelText("Tip percentage"), {
+    target: { value: "20" },
+  });
+  fireEvent.change(screen.getByLabelText("Persons"), {
+    target: { value: "2" },
+  });
 
   expect(asFragment()).toMatchInlineSnapshot(`
 <DocumentFragment>
@@ -49,7 +56,7 @@ test("TipCalculator", () => {
             name=""
             placeholder=""
             type="text"
-            value=""
+            value="100"
           />
         </div>
       </div>
@@ -96,7 +103,7 @@ test("TipCalculator", () => {
                 name=""
                 placeholder=""
                 type="text"
-                value=""
+                value="8.88"
               />
             </div>
           </div>
@@ -136,7 +143,7 @@ test("TipCalculator", () => {
                 name=""
                 placeholder=""
                 type="text"
-                value=""
+                value="8.875"
               />
             </div>
             <div
@@ -190,7 +197,7 @@ test("TipCalculator", () => {
                 name=""
                 placeholder=""
                 type="text"
-                value=""
+                value="20.00"
               />
             </div>
           </div>
@@ -230,7 +237,7 @@ test("TipCalculator", () => {
                 name=""
                 placeholder=""
                 type="text"
-                value=""
+                value="20"
               />
             </div>
             <div
@@ -275,7 +282,7 @@ test("TipCalculator", () => {
             name=""
             placeholder=""
             type="text"
-            value=""
+            value="128.88"
           />
         </div>
       </div>
@@ -322,7 +329,7 @@ test("TipCalculator", () => {
                 name=""
                 placeholder=""
                 type="text"
-                value=""
+                value="64.44"
               />
             </div>
           </div>
@@ -362,7 +369,7 @@ test("TipCalculator", () => {
                 name=""
                 placeholder=""
                 type="text"
-                value="1"
+                value="2"
               />
             </div>
           </div>
