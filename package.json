@@ -36,9 +36,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!@uidotdev/usehooks)/\"",
     "eject": "react-scripts eject",
-    "publish": "npm run build && rm -rf docs && mv build docs && git add --all && git commit --message 'Publish' && git push"
+    "publish": "npm test && npm run build && rm -rf docs && mv build docs && git add --all && git commit --message 'Publish' && git push"
   },
   "eslintConfig": {
     "extends": [
