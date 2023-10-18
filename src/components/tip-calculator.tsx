@@ -70,6 +70,7 @@ export function TipCalculator() {
     >
       <FormControl label="Subtotal">
         <Input
+          id="subtotal"
           inputMode="decimal"
           value={subtotal}
           onChange={(e) => {
@@ -96,6 +97,7 @@ export function TipCalculator() {
       <FormControl label="Tax">
         <div className={css({ display: "flex" })}>
           <Input
+            id="taxAmount"
             inputMode="decimal"
             value={taxAmount}
             onChange={(e) => {
@@ -111,6 +113,7 @@ export function TipCalculator() {
             overrides={leftInputOverrides}
           />
           <Input
+            id="taxPercent"
             inputMode="decimal"
             value={taxPercent}
             onChange={(e) => {
@@ -133,6 +136,7 @@ export function TipCalculator() {
       <FormControl label="Tip">
         <div className={css({ display: "flex" })}>
           <Input
+            id="tipAmount"
             inputMode="decimal"
             value={tipAmount}
             onChange={(e) => {
@@ -148,6 +152,7 @@ export function TipCalculator() {
             overrides={leftInputOverrides}
           />
           <Input
+            id="tipPercent"
             inputMode="decimal"
             value={tipPercent}
             onChange={(e) => {
@@ -168,12 +173,13 @@ export function TipCalculator() {
       </FormControl>
 
       <FormControl label="Total">
-        <Input value={total ? humanFriendlyNumber(total) : ""} />
+        <Input id="total" value={total ? humanFriendlyNumber(total) : ""} />
       </FormControl>
 
       <FormControl label="Per person">
         <div className={css({ display: "flex" })}>
           <Input
+            id="perPersonAmount"
             value={
               total ? humanFriendlyNumber(Number(total) / Number(persons)) : ""
             }
@@ -181,6 +187,7 @@ export function TipCalculator() {
             overrides={leftInputOverrides}
           />
           <Input
+            id="numberOfPersons"
             inputMode="numeric"
             value={persons}
             onChange={(e) => {

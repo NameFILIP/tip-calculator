@@ -16,6 +16,7 @@ test("TipCalculator", () => {
       <label
         class=""
         data-baseweb="form-control-label"
+        for="subtotal"
       >
         Subtotal
       </label>
@@ -37,6 +38,7 @@ test("TipCalculator", () => {
             aria-required="false"
             autocomplete="on"
             class=""
+            id="subtotal"
             inputmode="decimal"
             name=""
             placeholder=""
@@ -81,6 +83,7 @@ test("TipCalculator", () => {
               aria-required="false"
               autocomplete="on"
               class=""
+              id="taxAmount"
               inputmode="decimal"
               name=""
               placeholder=""
@@ -102,6 +105,7 @@ test("TipCalculator", () => {
               aria-required="false"
               autocomplete="on"
               class=""
+              id="taxPercent"
               inputmode="decimal"
               name=""
               placeholder=""
@@ -152,6 +156,7 @@ test("TipCalculator", () => {
               aria-required="false"
               autocomplete="on"
               class=""
+              id="tipAmount"
               inputmode="decimal"
               name=""
               placeholder=""
@@ -173,6 +178,7 @@ test("TipCalculator", () => {
               aria-required="false"
               autocomplete="on"
               class=""
+              id="tipPercent"
               inputmode="decimal"
               name=""
               placeholder=""
@@ -194,6 +200,7 @@ test("TipCalculator", () => {
       <label
         class=""
         data-baseweb="form-control-label"
+        for="total"
       >
         Total
       </label>
@@ -215,6 +222,7 @@ test("TipCalculator", () => {
             aria-required="false"
             autocomplete="on"
             class=""
+            id="total"
             inputmode="text"
             name=""
             placeholder=""
@@ -259,6 +267,7 @@ test("TipCalculator", () => {
               aria-required="false"
               autocomplete="on"
               class=""
+              id="perPersonAmount"
               inputmode="text"
               name=""
               placeholder=""
@@ -280,6 +289,7 @@ test("TipCalculator", () => {
               aria-required="false"
               autocomplete="on"
               class=""
+              id="numberOfPersons"
               inputmode="numeric"
               name=""
               placeholder=""
