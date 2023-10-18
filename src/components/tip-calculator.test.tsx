@@ -116,7 +116,7 @@ test("TipCalculator", () => {
           <label
             class=""
             data-baseweb="form-control-label"
-            for="taxPercent"
+            for="taxPercentage"
           >
             Tax percentage
           </label>
@@ -138,7 +138,7 @@ test("TipCalculator", () => {
                 aria-required="false"
                 autocomplete="on"
                 class=""
-                id="taxPercent"
+                id="taxPercentage"
                 inputmode="decimal"
                 name=""
                 placeholder=""
@@ -210,7 +210,7 @@ test("TipCalculator", () => {
           <label
             class=""
             data-baseweb="form-control-label"
-            for="tipPercent"
+            for="tipPercentage"
           >
             Tip percentage
           </label>
@@ -232,7 +232,7 @@ test("TipCalculator", () => {
                 aria-required="false"
                 autocomplete="on"
                 class=""
-                id="tipPercent"
+                id="tipPercentage"
                 inputmode="decimal"
                 name=""
                 placeholder=""

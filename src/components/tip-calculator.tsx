@@ -52,10 +52,16 @@ export function TipCalculator() {
   const [subtotal, setSubtotal] = useState<string>("");
 
   const [taxAmount, setTaxAmount] = useState<string>("");
-  const [taxPercent, setTaxPercent] = useLocalStorage("taxPercent", "");
+  const [taxPercentage, setTaxPercentage] = useLocalStorage(
+    "taxPercentage",
+    ""
+  );
 
   const [tipAmount, setTipAmount] = useState<string>("");
-  const [tipPercent, setTipPercent] = useLocalStorage("tipPercent", "");
+  const [tipPercentage, setTipPercentage] = useLocalStorage(
+    "tipPercentage",
+    ""
+  );
 
   const [persons, setPersons] = useState<string>("1");
 
@@ -76,18 +82,18 @@ export function TipCalculator() {
           onChange={(e) => {
             const numbersOnly = keepNumbersAndDecimal(e.target.value);
             setSubtotal(numbersOnly);
-            if (tipPercent !== "") {
+            if (tipPercentage !== "") {
               setTipAmount(
                 String(
                   humanFriendlyNumber(
-                    (Number(tipPercent) / 100) * Number(numbersOnly)
+                    (Number(tipPercentage) / 100) * Number(numbersOnly)
                   )
                 )
               );
             }
-            if (taxPercent !== "") {
+            if (taxPercentage !== "") {
               setTaxAmount(
-                String((Number(taxPercent) / 100) * Number(numbersOnly))
+                String((Number(taxPercentage) / 100) * Number(numbersOnly))
               );
             }
           }}
@@ -105,7 +111,7 @@ export function TipCalculator() {
                 const numbersOnly = keepNumbersAndDecimal(e.target.value);
                 setTaxAmount(numbersOnly);
                 if (subtotal !== "") {
-                  setTaxPercent(
+                  setTaxPercentage(
                     String((Number(numbersOnly) / Number(subtotal)) * 100)
                   );
                 }
@@ -118,12 +124,12 @@ export function TipCalculator() {
         <div>
           <FormControl label="Tax percentage">
             <Input
-              id="taxPercent"
+              id="taxPercentage"
               inputMode="decimal"
-              value={taxPercent}
+              value={taxPercentage}
               onChange={(e) => {
                 const numbersOnly = keepNumbersAndDecimal(e.target.value);
-                setTaxPercent(numbersOnly);
+                setTaxPercentage(numbersOnly);
                 if (subtotal !== "") {
                   setTaxAmount(
                     humanFriendlyNumber(
@@ -150,7 +156,7 @@ export function TipCalculator() {
                 const numbersOnly = keepNumbersAndDecimal(e.target.value);
                 setTipAmount(numbersOnly);
                 if (subtotal !== "") {
-                  setTipPercent(
+                  setTipPercentage(
                     String((Number(numbersOnly) / Number(subtotal)) * 100)
                   );
                 }
@@ -163,12 +169,12 @@ export function TipCalculator() {
         <div>
           <FormControl label="Tip percentage">
             <Input
-              id="tipPercent"
+              id="tipPercentage"
               inputMode="decimal"
-              value={tipPercent}
+              value={tipPercentage}
               onChange={(e) => {
                 const numbersOnly = keepNumbersAndDecimal(e.target.value);
-                setTipPercent(numbersOnly);
+                setTipPercentage(numbersOnly);
                 if (subtotal !== "") {
                   setTipAmount(
                     humanFriendlyNumber(
