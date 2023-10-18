@@ -3,24 +3,13 @@ import { useLocalStorage } from "@uidotdev/usehooks";
 import { FormControl } from "baseui/form-control";
 import { Input } from "baseui/input";
 import { useStyletron } from "baseui";
-
-const leftInputOverrides = {
-  Root: {
-    style: {
-      borderTopRightRadius: "0",
-      borderBottomRightRadius: "0",
-    },
-  },
-};
-
-const rightInputOverrides = {
-  Root: {
-    style: {
-      borderTopLeftRadius: "0",
-      borderBottomLeftRadius: "0",
-    },
-  },
-};
+import { AmountAndPercentage } from "./amount-and-percentage";
+import {
+  keepNumbersAndDecimal,
+  humanFriendlyNumber,
+  leftInputOverrides,
+  rightInputOverrides,
+} from "./shared";
 
 function getTotal({
   subtotal,
@@ -35,16 +24,6 @@ function getTotal({
     return null;
   }
   return Number(subtotal) + Number(tipAmount) + Number(taxAmount);
-}
-
-function keepNumbersAndDecimal(input: string) {
-  return input.replace(/[^0-9.]/g, "");
-}
-
-function humanFriendlyNumber(input: string | number): string {
-  const numInput = Number(input);
-  // Round up the last cent which is how restaurants calculate it
-  return (Math.ceil(numInput * 100) / 100).toFixed(2);
 }
 
 export function TipCalculator() {
@@ -84,111 +63,39 @@ export function TipCalculator() {
             setSubtotal(numbersOnly);
             if (tipPercentage !== "") {
               setTipAmount(
-                String(
-                  humanFriendlyNumber(
-                    (Number(tipPercentage) / 100) * Number(numbersOnly)
-                  )
+                humanFriendlyNumber(
+                  (Number(tipPercentage) / 100) * Number(numbersOnly)
                 )
               );
             }
             if (taxPercentage !== "") {
               setTaxAmount(
-                String((Number(taxPercentage) / 100) * Number(numbersOnly))
+                humanFriendlyNumber(
+                  (Number(taxPercentage) / 100) * Number(numbersOnly)
+                )
               );
             }
           }}
         />
       </FormControl>
 
-      <div className={css({ display: "flex" })}>
-        <div>
-          <FormControl label="Tax amount">
-            <Input
-              id="taxAmount"
-              inputMode="decimal"
-              value={taxAmount}
-              onChange={(e) => {
-                const numbersOnly = keepNumbersAndDecimal(e.target.value);
-                setTaxAmount(numbersOnly);
-                if (subtotal !== "") {
-                  setTaxPercentage(
-                    String((Number(numbersOnly) / Number(subtotal)) * 100)
-                  );
-                }
-              }}
-              startEnhancer="$"
-              overrides={leftInputOverrides}
-            />
-          </FormControl>
-        </div>
-        <div>
-          <FormControl label="Tax percentage">
-            <Input
-              id="taxPercentage"
-              inputMode="decimal"
-              value={taxPercentage}
-              onChange={(e) => {
-                const numbersOnly = keepNumbersAndDecimal(e.target.value);
-                setTaxPercentage(numbersOnly);
-                if (subtotal !== "") {
-                  setTaxAmount(
-                    humanFriendlyNumber(
-                      (Number(numbersOnly) / 100) * Number(subtotal)
-                    )
-                  );
-                }
-              }}
-              endEnhancer="%"
-              overrides={rightInputOverrides}
-            />
-          </FormControl>
-        </div>
-      </div>
+      <AmountAndPercentage
+        label="Tax"
+        amount={taxAmount}
+        percentage={taxPercentage}
+        denominator={subtotal}
+        setAmount={setTaxAmount}
+        setPercentage={setTaxPercentage}
+      />
 
-      <div className={css({ display: "flex" })}>
-        <div>
-          <FormControl label="Tip amount">
-            <Input
-              id="tipAmount"
-              inputMode="decimal"
-              value={tipAmount}
-              onChange={(e) => {
-                const numbersOnly = keepNumbersAndDecimal(e.target.value);
-                setTipAmount(numbersOnly);
-                if (subtotal !== "") {
-                  setTipPercentage(
-                    String((Number(numbersOnly) / Number(subtotal)) * 100)
-                  );
-                }
-              }}
-              startEnhancer="$"
-              overrides={leftInputOverrides}
-            />
-          </FormControl>
-        </div>
-        <div>
-          <FormControl label="Tip percentage">
-            <Input
-              id="tipPercentage"
-              inputMode="decimal"
-              value={tipPercentage}
-              onChange={(e) => {
-                const numbersOnly = keepNumbersAndDecimal(e.target.value);
-                setTipPercentage(numbersOnly);
-                if (subtotal !== "") {
-                  setTipAmount(
-                    humanFriendlyNumber(
-                      (Number(numbersOnly) / 100) * Number(subtotal)
-                    )
-                  );
-                }
-              }}
-              endEnhancer="%"
-              overrides={rightInputOverrides}
-            />
-          </FormControl>
-        </div>
-      </div>
+      <AmountAndPercentage
+        label="Tip"
+        amount={tipAmount}
+        percentage={tipPercentage}
+        denominator={subtotal}
+        setAmount={setTipAmount}
+        setPercentage={setTipPercentage}
+      />
 
       <FormControl label="Total">
         <Input id="total" value={total ? humanFriendlyNumber(total) : ""} />
