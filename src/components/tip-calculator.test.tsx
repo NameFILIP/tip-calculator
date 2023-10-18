@@ -3,7 +3,13 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import { TipCalculator } from "./tip-calculator";
 
 test("TipCalculator", () => {
-  const { asFragment } = render(<TipCalculator />);
+  const { asFragment, container } = render(<TipCalculator />);
+
+  //   console.log(getElementById("subtotal"));
+
+  //   fireEvent.change(screen.getByLabelText("Subtotal"), {
+  //     target: { value: "100" },
+  //   });
 
   expect(asFragment()).toMatchInlineSnapshot(`
 <DocumentFragment>
@@ -48,148 +54,190 @@ test("TipCalculator", () => {
         </div>
       </div>
     </div>
-    <span
-      class=""
-    >
-      <label
-        class=""
-        data-baseweb="form-control-label"
-      >
-        Tax
-      </label>
-    </span>
     <div
       class=""
-      data-baseweb="form-control-container"
     >
-      <div
-        class=""
-      >
+      <div>
+        <span
+          class=""
+        >
+          <label
+            class=""
+            data-baseweb="form-control-label"
+            for="taxAmount"
+          >
+            Tax amount
+          </label>
+        </span>
         <div
           class=""
-          data-baseweb="input"
+          data-baseweb="form-control-container"
         >
           <div
             class=""
+            data-baseweb="input"
           >
-            $
-          </div>
-          <div
-            class=""
-            data-baseweb="base-input"
-          >
-            <input
-              aria-invalid="false"
-              aria-required="false"
-              autocomplete="on"
+            <div
               class=""
-              id="taxAmount"
-              inputmode="decimal"
-              name=""
-              placeholder=""
-              type="text"
-              value=""
-            />
+            >
+              $
+            </div>
+            <div
+              class=""
+              data-baseweb="base-input"
+            >
+              <input
+                aria-invalid="false"
+                aria-required="false"
+                autocomplete="on"
+                class=""
+                id="taxAmount"
+                inputmode="decimal"
+                name=""
+                placeholder=""
+                type="text"
+                value=""
+              />
+            </div>
           </div>
         </div>
+      </div>
+      <div>
+        <span
+          class=""
+        >
+          <label
+            class=""
+            data-baseweb="form-control-label"
+            for="taxPercent"
+          >
+            Tax percentage
+          </label>
+        </span>
         <div
           class=""
-          data-baseweb="input"
+          data-baseweb="form-control-container"
         >
           <div
             class=""
-            data-baseweb="base-input"
+            data-baseweb="input"
           >
-            <input
-              aria-invalid="false"
-              aria-required="false"
-              autocomplete="on"
+            <div
               class=""
-              id="taxPercent"
-              inputmode="decimal"
-              name=""
-              placeholder=""
-              type="text"
-              value=""
-            />
-          </div>
-          <div
-            class=""
-          >
-            %
+              data-baseweb="base-input"
+            >
+              <input
+                aria-invalid="false"
+                aria-required="false"
+                autocomplete="on"
+                class=""
+                id="taxPercent"
+                inputmode="decimal"
+                name=""
+                placeholder=""
+                type="text"
+                value=""
+              />
+            </div>
+            <div
+              class=""
+            >
+              %
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <span
-      class=""
-    >
-      <label
-        class=""
-        data-baseweb="form-control-label"
-      >
-        Tip
-      </label>
-    </span>
     <div
       class=""
-      data-baseweb="form-control-container"
     >
-      <div
-        class=""
-      >
+      <div>
+        <span
+          class=""
+        >
+          <label
+            class=""
+            data-baseweb="form-control-label"
+            for="tipAmount"
+          >
+            Tip amount
+          </label>
+        </span>
         <div
           class=""
-          data-baseweb="input"
+          data-baseweb="form-control-container"
         >
           <div
             class=""
+            data-baseweb="input"
           >
-            $
-          </div>
-          <div
-            class=""
-            data-baseweb="base-input"
-          >
-            <input
-              aria-invalid="false"
-              aria-required="false"
-              autocomplete="on"
+            <div
               class=""
-              id="tipAmount"
-              inputmode="decimal"
-              name=""
-              placeholder=""
-              type="text"
-              value=""
-            />
+            >
+              $
+            </div>
+            <div
+              class=""
+              data-baseweb="base-input"
+            >
+              <input
+                aria-invalid="false"
+                aria-required="false"
+                autocomplete="on"
+                class=""
+                id="tipAmount"
+                inputmode="decimal"
+                name=""
+                placeholder=""
+                type="text"
+                value=""
+              />
+            </div>
           </div>
         </div>
+      </div>
+      <div>
+        <span
+          class=""
+        >
+          <label
+            class=""
+            data-baseweb="form-control-label"
+            for="tipPercent"
+          >
+            Tip percentage
+          </label>
+        </span>
         <div
           class=""
-          data-baseweb="input"
+          data-baseweb="form-control-container"
         >
           <div
             class=""
-            data-baseweb="base-input"
+            data-baseweb="input"
           >
-            <input
-              aria-invalid="false"
-              aria-required="false"
-              autocomplete="on"
+            <div
               class=""
-              id="tipPercent"
-              inputmode="decimal"
-              name=""
-              placeholder=""
-              type="text"
-              value=""
-            />
-          </div>
-          <div
-            class=""
-          >
-            %
+              data-baseweb="base-input"
+            >
+              <input
+                aria-invalid="false"
+                aria-required="false"
+                autocomplete="on"
+                class=""
+                id="tipPercent"
+                inputmode="decimal"
+                name=""
+                placeholder=""
+                type="text"
+                value=""
+              />
+            </div>
+            <div
+              class=""
+            >
+              %
+            </div>
           </div>
         </div>
       </div>
@@ -232,70 +280,91 @@ test("TipCalculator", () => {
         </div>
       </div>
     </div>
-    <span
-      class=""
-    >
-      <label
-        class=""
-        data-baseweb="form-control-label"
-      >
-        Per person
-      </label>
-    </span>
     <div
       class=""
-      data-baseweb="form-control-container"
     >
-      <div
-        class=""
-      >
+      <div>
+        <span
+          class=""
+        >
+          <label
+            class=""
+            data-baseweb="form-control-label"
+            for="perPersonAmount"
+          >
+            Per person
+          </label>
+        </span>
         <div
           class=""
-          data-baseweb="input"
+          data-baseweb="form-control-container"
         >
           <div
             class=""
+            data-baseweb="input"
           >
-            $
-          </div>
-          <div
-            class=""
-            data-baseweb="base-input"
-          >
-            <input
-              aria-invalid="false"
-              aria-required="false"
-              autocomplete="on"
+            <div
               class=""
-              id="perPersonAmount"
-              inputmode="text"
-              name=""
-              placeholder=""
-              type="text"
-              value=""
-            />
+            >
+              $
+            </div>
+            <div
+              class=""
+              data-baseweb="base-input"
+            >
+              <input
+                aria-invalid="false"
+                aria-required="false"
+                autocomplete="on"
+                class=""
+                id="perPersonAmount"
+                inputmode="text"
+                name=""
+                placeholder=""
+                type="text"
+                value=""
+              />
+            </div>
           </div>
         </div>
+      </div>
+      <div>
+        <span
+          class=""
+        >
+          <label
+            class=""
+            data-baseweb="form-control-label"
+            for="numberOfPersons"
+          >
+            Persons
+          </label>
+        </span>
         <div
           class=""
-          data-baseweb="input"
+          data-baseweb="form-control-container"
         >
           <div
             class=""
-            data-baseweb="base-input"
+            data-baseweb="input"
           >
-            <input
-              aria-invalid="false"
-              aria-required="false"
-              autocomplete="on"
+            <div
               class=""
-              id="numberOfPersons"
-              inputmode="numeric"
-              name=""
-              placeholder=""
-              type="text"
-              value="1"
-            />
+              data-baseweb="base-input"
+            >
+              <input
+                aria-invalid="false"
+                aria-required="false"
+                autocomplete="on"
+                class=""
+                id="numberOfPersons"
+                inputmode="numeric"
+                name=""
+                placeholder=""
+                type="text"
+                value="1"
+              />
+            </div>
           </div>
         </div>
       </div>

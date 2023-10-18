@@ -94,109 +94,129 @@ export function TipCalculator() {
         />
       </FormControl>
 
-      <FormControl label="Tax">
-        <div className={css({ display: "flex" })}>
-          <Input
-            id="taxAmount"
-            inputMode="decimal"
-            value={taxAmount}
-            onChange={(e) => {
-              const numbersOnly = keepNumbersAndDecimal(e.target.value);
-              setTaxAmount(numbersOnly);
-              if (subtotal !== "") {
-                setTaxPercent(
-                  String((Number(numbersOnly) / Number(subtotal)) * 100)
-                );
-              }
-            }}
-            startEnhancer="$"
-            overrides={leftInputOverrides}
-          />
-          <Input
-            id="taxPercent"
-            inputMode="decimal"
-            value={taxPercent}
-            onChange={(e) => {
-              const numbersOnly = keepNumbersAndDecimal(e.target.value);
-              setTaxPercent(numbersOnly);
-              if (subtotal !== "") {
-                setTaxAmount(
-                  humanFriendlyNumber(
-                    (Number(numbersOnly) / 100) * Number(subtotal)
-                  )
-                );
-              }
-            }}
-            endEnhancer="%"
-            overrides={rightInputOverrides}
-          />
+      <div className={css({ display: "flex" })}>
+        <div>
+          <FormControl label="Tax amount">
+            <Input
+              id="taxAmount"
+              inputMode="decimal"
+              value={taxAmount}
+              onChange={(e) => {
+                const numbersOnly = keepNumbersAndDecimal(e.target.value);
+                setTaxAmount(numbersOnly);
+                if (subtotal !== "") {
+                  setTaxPercent(
+                    String((Number(numbersOnly) / Number(subtotal)) * 100)
+                  );
+                }
+              }}
+              startEnhancer="$"
+              overrides={leftInputOverrides}
+            />
+          </FormControl>
         </div>
-      </FormControl>
+        <div>
+          <FormControl label="Tax percentage">
+            <Input
+              id="taxPercent"
+              inputMode="decimal"
+              value={taxPercent}
+              onChange={(e) => {
+                const numbersOnly = keepNumbersAndDecimal(e.target.value);
+                setTaxPercent(numbersOnly);
+                if (subtotal !== "") {
+                  setTaxAmount(
+                    humanFriendlyNumber(
+                      (Number(numbersOnly) / 100) * Number(subtotal)
+                    )
+                  );
+                }
+              }}
+              endEnhancer="%"
+              overrides={rightInputOverrides}
+            />
+          </FormControl>
+        </div>
+      </div>
 
-      <FormControl label="Tip">
-        <div className={css({ display: "flex" })}>
-          <Input
-            id="tipAmount"
-            inputMode="decimal"
-            value={tipAmount}
-            onChange={(e) => {
-              const numbersOnly = keepNumbersAndDecimal(e.target.value);
-              setTipAmount(numbersOnly);
-              if (subtotal !== "") {
-                setTipPercent(
-                  String((Number(numbersOnly) / Number(subtotal)) * 100)
-                );
-              }
-            }}
-            startEnhancer="$"
-            overrides={leftInputOverrides}
-          />
-          <Input
-            id="tipPercent"
-            inputMode="decimal"
-            value={tipPercent}
-            onChange={(e) => {
-              const numbersOnly = keepNumbersAndDecimal(e.target.value);
-              setTipPercent(numbersOnly);
-              if (subtotal !== "") {
-                setTipAmount(
-                  humanFriendlyNumber(
-                    (Number(numbersOnly) / 100) * Number(subtotal)
-                  )
-                );
-              }
-            }}
-            endEnhancer="%"
-            overrides={rightInputOverrides}
-          />
+      <div className={css({ display: "flex" })}>
+        <div>
+          <FormControl label="Tip amount">
+            <Input
+              id="tipAmount"
+              inputMode="decimal"
+              value={tipAmount}
+              onChange={(e) => {
+                const numbersOnly = keepNumbersAndDecimal(e.target.value);
+                setTipAmount(numbersOnly);
+                if (subtotal !== "") {
+                  setTipPercent(
+                    String((Number(numbersOnly) / Number(subtotal)) * 100)
+                  );
+                }
+              }}
+              startEnhancer="$"
+              overrides={leftInputOverrides}
+            />
+          </FormControl>
         </div>
-      </FormControl>
+        <div>
+          <FormControl label="Tip percentage">
+            <Input
+              id="tipPercent"
+              inputMode="decimal"
+              value={tipPercent}
+              onChange={(e) => {
+                const numbersOnly = keepNumbersAndDecimal(e.target.value);
+                setTipPercent(numbersOnly);
+                if (subtotal !== "") {
+                  setTipAmount(
+                    humanFriendlyNumber(
+                      (Number(numbersOnly) / 100) * Number(subtotal)
+                    )
+                  );
+                }
+              }}
+              endEnhancer="%"
+              overrides={rightInputOverrides}
+            />
+          </FormControl>
+        </div>
+      </div>
 
       <FormControl label="Total">
         <Input id="total" value={total ? humanFriendlyNumber(total) : ""} />
       </FormControl>
 
-      <FormControl label="Per person">
-        <div className={css({ display: "flex" })}>
-          <Input
-            id="perPersonAmount"
-            value={
-              total ? humanFriendlyNumber(Number(total) / Number(persons)) : ""
-            }
-            startEnhancer="$"
-            overrides={leftInputOverrides}
-          />
-          <Input
-            id="numberOfPersons"
-            inputMode="numeric"
-            value={persons}
-            onChange={(e) => {
-              setPersons(e.target.value);
-            }}
-            overrides={rightInputOverrides}
-          />
+      <div className={css({ display: "flex" })}>
+        <div>
+          <FormControl label="Per person">
+            <Input
+              id="perPersonAmount"
+              value={
+                total
+                  ? humanFriendlyNumber(Number(total) / Number(persons))
+                  : ""
+              }
+              startEnhancer="$"
+              overrides={leftInputOverrides}
+            />
+          </FormControl>
         </div>
-      </FormControl>
+        <div>
+          <FormControl label="Persons">
+            <Input
+              id="numberOfPersons"
+              inputMode="numeric"
+              value={persons}
+              onChange={(e) => {
+                setPersons(e.target.value);
+              }}
+              overrides={rightInputOverrides}
+            />
+          </FormControl>
+        </div>
+      </div>
     </div>
   );
 }
