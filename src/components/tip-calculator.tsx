@@ -97,43 +97,6 @@ export function TipCalculator() {
         <div className={css({ display: "flex" })}>
           <Input
             inputMode="decimal"
-            value={tipAmount}
-            onChange={(e) => {
-              const numbersOnly = keepNumbersAndDecimal(e.target.value);
-              setTipAmount(numbersOnly);
-              if (subtotal !== "") {
-                setTipPercent(
-                  String((Number(numbersOnly) / Number(subtotal)) * 100)
-                );
-              }
-            }}
-            startEnhancer="$"
-            overrides={leftInputOverrides}
-          />
-          <Input
-            inputMode="decimal"
-            value={tipPercent}
-            onChange={(e) => {
-              const numbersOnly = keepNumbersAndDecimal(e.target.value);
-              setTipPercent(numbersOnly);
-              if (subtotal !== "") {
-                setTipAmount(
-                  humanFriendlyNumber(
-                    (Number(numbersOnly) / 100) * Number(subtotal)
-                  )
-                );
-              }
-            }}
-            endEnhancer="%"
-            overrides={rightInputOverrides}
-          />
-        </div>
-      </FormControl>
-
-      <FormControl label="Tip">
-        <div className={css({ display: "flex" })}>
-          <Input
-            inputMode="decimal"
             value={taxAmount}
             onChange={(e) => {
               const numbersOnly = keepNumbersAndDecimal(e.target.value);
@@ -155,6 +118,43 @@ export function TipCalculator() {
               setTaxPercent(numbersOnly);
               if (subtotal !== "") {
                 setTaxAmount(
+                  humanFriendlyNumber(
+                    (Number(numbersOnly) / 100) * Number(subtotal)
+                  )
+                );
+              }
+            }}
+            endEnhancer="%"
+            overrides={rightInputOverrides}
+          />
+        </div>
+      </FormControl>
+
+      <FormControl label="Tip">
+        <div className={css({ display: "flex" })}>
+          <Input
+            inputMode="decimal"
+            value={tipAmount}
+            onChange={(e) => {
+              const numbersOnly = keepNumbersAndDecimal(e.target.value);
+              setTipAmount(numbersOnly);
+              if (subtotal !== "") {
+                setTipPercent(
+                  String((Number(numbersOnly) / Number(subtotal)) * 100)
+                );
+              }
+            }}
+            startEnhancer="$"
+            overrides={leftInputOverrides}
+          />
+          <Input
+            inputMode="decimal"
+            value={tipPercent}
+            onChange={(e) => {
+              const numbersOnly = keepNumbersAndDecimal(e.target.value);
+              setTipPercent(numbersOnly);
+              if (subtotal !== "") {
+                setTipAmount(
                   humanFriendlyNumber(
                     (Number(numbersOnly) / 100) * Number(subtotal)
                   )
