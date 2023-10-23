@@ -125,6 +125,7 @@ export function TipCalculator() {
               onChange={(e) => {
                 setPersons(e.target.value);
               }}
+              endEnhancer="👥"
               overrides={rightInputOverrides}
             />
           </FormControl>

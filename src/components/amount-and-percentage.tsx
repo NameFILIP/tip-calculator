@@ -18,7 +18,7 @@ type AmountAndPercentageProps = {
 };
 
 export function AmountAndPercentage(props: AmountAndPercentageProps) {
-  const [css, theme] = useStyletron();
+  const [css] = useStyletron();
   const { label, amount, percentage, denominator, setAmount, setPercentage } =
     props;
 

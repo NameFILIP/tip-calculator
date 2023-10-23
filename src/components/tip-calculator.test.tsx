@@ -377,6 +377,11 @@ test("TipCalculator - enter percentages", () => {
                 value="2"
               />
             </div>
+            <div
+              class=""
+            >
+              👥
+            </div>
           </div>
         </div>
       </div>
@@ -760,6 +765,11 @@ test("TipCalculator - enter amounts", () => {
                 type="text"
                 value="3"
               />
+            </div>
+            <div
+              class=""
+            >
+              👥
             </div>
           </div>
         </div>
