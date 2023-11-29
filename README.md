@@ -2,7 +2,7 @@
 
 ## Overview
 
-[Tip Calculator](https://namefilip.github.io/tip-calculator/) is a simple Progressive Web App to help calculate how much to tip at a restaurant.
+[Tip Calculator](https://namefilip.github.io/tip-calculator/) is a simple Progressive Web App to help calculate how much to tip at a restaurant. It always calculates the tip on the subtotal excluding taxes.
 
 ## Installation
 1. Open the web page: [Tip Calculator](https://namefilip.github.io/tip-calculator/)
