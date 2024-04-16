@@ -1,14 +1,15 @@
-import React, { useState } from "react";
+import { useState, useRef } from "react";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { FormControl } from "baseui/form-control";
 import { Input } from "baseui/input";
 import { useStyletron } from "baseui";
+import { Button, KIND as BUTTON_KIND } from "baseui/button";
 import { AmountAndPercentage } from "./amount-and-percentage";
 import {
-  keepNumbersAndDecimal,
   humanFriendlyNumber,
   leftInputOverrides,
   rightInputOverrides,
+  calculateExpression,
 } from "./shared";
 
 function getTotal({
@@ -29,6 +30,7 @@ function getTotal({
 export function TipCalculator() {
   const [css, theme] = useStyletron();
   const [subtotal, setSubtotal] = useState<string>("");
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const [taxAmount, setTaxAmount] = useState<string>("");
   const [taxPercentage, setTaxPercentage] = useLocalStorage(
@@ -44,7 +46,21 @@ export function TipCalculator() {
 
   const [persons, setPersons] = useState<string>("1");
 
-  const total = getTotal({ subtotal, tipAmount, taxAmount });
+  const subtotalValue = calculateExpression(subtotal);
+
+  const total = getTotal({
+    subtotal: subtotalValue,
+    tipAmount,
+    taxAmount,
+  });
+
+  const handleClickPlus = () => {
+    const trimmed = subtotal.trim();
+    if (trimmed.length > 0 && trimmed[trimmed.length - 1] !== "+") {
+      setSubtotal((subtotal) => `${subtotal} + `);
+    }
+    inputRef.current && inputRef.current.focus();
+  };
 
   return (
     <div
@@ -58,24 +74,59 @@ export function TipCalculator() {
           id="subtotal"
           inputMode="decimal"
           value={subtotal}
+          inputRef={inputRef}
           onChange={(e) => {
-            const numbersOnly = keepNumbersAndDecimal(e.target.value);
-            setSubtotal(numbersOnly);
+            const newSubtotal = e.target.value;
+            setSubtotal(newSubtotal);
+            const newSubtotalValue = calculateExpression(newSubtotal);
             if (tipPercentage !== "") {
               setTipAmount(
                 humanFriendlyNumber(
-                  (Number(tipPercentage) / 100) * Number(numbersOnly)
+                  (Number(tipPercentage) / 100) * Number(newSubtotalValue)
                 )
               );
             }
             if (taxPercentage !== "") {
               setTaxAmount(
                 humanFriendlyNumber(
-                  (Number(taxPercentage) / 100) * Number(numbersOnly)
+                  (Number(taxPercentage) / 100) * Number(newSubtotalValue)
                 )
               );
             }
           }}
+          overrides={{
+            Root: {
+              style: {
+                paddingRight: 0,
+              },
+            },
+            EndEnhancer: {
+              style: {
+                paddingRight: 0,
+              },
+            },
+          }}
+          startEnhancer="$"
+          endEnhancer={
+            <Button
+              kind={BUTTON_KIND.secondary}
+              type="button"
+              onClick={handleClickPlus}
+              overrides={{
+                Root: {
+                  style: {
+                    borderTopLeftRadius: 0,
+                    borderBottomLeftRadius: 0,
+                    paddingRight: theme.sizing.scale800,
+                    paddingLeft: theme.sizing.scale800,
+                    backgroundColor: theme.colors.primary200,
+                  },
+                },
+              }}
+            >
+              +
+            </Button>
+          }
         />
       </FormControl>
 
@@ -83,7 +134,7 @@ export function TipCalculator() {
         label="Tax"
         amount={taxAmount}
         percentage={taxPercentage}
-        denominator={subtotal}
+        denominator={subtotalValue}
         setAmount={setTaxAmount}
         setPercentage={setTaxPercentage}
       />
@@ -92,7 +143,7 @@ export function TipCalculator() {
         label="Tip"
         amount={tipAmount}
         percentage={tipPercentage}
-        denominator={subtotal}
+        denominator={subtotalValue}
         setAmount={setTipAmount}
         setPercentage={setTipPercentage}
       />

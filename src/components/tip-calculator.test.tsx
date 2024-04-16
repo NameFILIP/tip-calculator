@@ -1,4 +1,3 @@
-import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { TipCalculator } from "./tip-calculator";
 
@@ -49,6 +48,11 @@ test("TipCalculator - enter percentages", () => {
       >
         <div
           class=""
+        >
+          $
+        </div>
+        <div
+          class=""
           data-baseweb="base-input"
         >
           <input
@@ -63,6 +67,17 @@ test("TipCalculator - enter percentages", () => {
             type="text"
             value="100"
           />
+        </div>
+        <div
+          class=""
+        >
+          <button
+            class=""
+            data-baseweb="button"
+            type="button"
+          >
+            +
+          </button>
         </div>
       </div>
     </div>
@@ -391,6 +406,417 @@ test("TipCalculator - enter percentages", () => {
 `);
 });
 
+test("TipCalculator - plus button", () => {
+  const { asFragment, container } = render(<TipCalculator />);
+
+  fireEvent.change(screen.getByLabelText("Subtotal"), {
+    target: { value: "100" },
+  });
+  fireEvent.click(screen.getByText("+"));
+  expect(screen.getByLabelText("Subtotal")).toHaveValue("100 + ");
+  fireEvent.change(screen.getByLabelText("Subtotal"), {
+    target: { value: "100 + 100" },
+  });
+
+  fireEvent.change(screen.getByLabelText("Tax percentage"), {
+    target: { value: "8.875" },
+  });
+  fireEvent.change(screen.getByLabelText("Tip percentage"), {
+    target: { value: "20" },
+  });
+  fireEvent.change(screen.getByLabelText("Persons"), {
+    target: { value: "2" },
+  });
+
+  expect(screen.getByLabelText("Tax amount")).toHaveValue("17.75");
+  expect(screen.getByLabelText("Tip amount")).toHaveValue("40.00");
+  expect(screen.getByLabelText("Total")).toHaveValue("257.75");
+  expect(screen.getByLabelText("Per person")).toHaveValue("128.88");
+
+  expect(asFragment()).toMatchInlineSnapshot(`
+<DocumentFragment>
+  <div
+    class=""
+  >
+    <span
+      class=""
+    >
+      <label
+        class=""
+        data-baseweb="form-control-label"
+        for="subtotal"
+      >
+        Subtotal
+      </label>
+    </span>
+    <div
+      class=""
+      data-baseweb="form-control-container"
+    >
+      <div
+        class=""
+        data-baseweb="input"
+      >
+        <div
+          class=""
+        >
+          $
+        </div>
+        <div
+          class=""
+          data-baseweb="base-input"
+        >
+          <input
+            aria-invalid="false"
+            aria-required="false"
+            autocomplete="on"
+            class=""
+            id="subtotal"
+            inputmode="decimal"
+            name=""
+            placeholder=""
+            type="text"
+            value="100 + 100"
+          />
+        </div>
+        <div
+          class=""
+        >
+          <button
+            class=""
+            data-baseweb="button"
+            type="button"
+          >
+            +
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      class=""
+    >
+      <div>
+        <span
+          class=""
+        >
+          <label
+            class=""
+            data-baseweb="form-control-label"
+            for="taxAmount"
+          >
+            Tax amount
+          </label>
+        </span>
+        <div
+          class=""
+          data-baseweb="form-control-container"
+        >
+          <div
+            class=""
+            data-baseweb="input"
+          >
+            <div
+              class=""
+            >
+              $
+            </div>
+            <div
+              class=""
+              data-baseweb="base-input"
+            >
+              <input
+                aria-invalid="false"
+                aria-required="false"
+                autocomplete="on"
+                class=""
+                id="taxAmount"
+                inputmode="decimal"
+                name=""
+                placeholder=""
+                type="text"
+                value="17.75"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <span
+          class=""
+        >
+          <label
+            class=""
+            data-baseweb="form-control-label"
+            for="taxPercentage"
+          >
+            Tax percentage
+          </label>
+        </span>
+        <div
+          class=""
+          data-baseweb="form-control-container"
+        >
+          <div
+            class=""
+            data-baseweb="input"
+          >
+            <div
+              class=""
+              data-baseweb="base-input"
+            >
+              <input
+                aria-invalid="false"
+                aria-required="false"
+                autocomplete="on"
+                class=""
+                id="taxPercentage"
+                inputmode="decimal"
+                name=""
+                placeholder=""
+                type="text"
+                value="8.875"
+              />
+            </div>
+            <div
+              class=""
+            >
+              %
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class=""
+    >
+      <div>
+        <span
+          class=""
+        >
+          <label
+            class=""
+            data-baseweb="form-control-label"
+            for="tipAmount"
+          >
+            Tip amount
+          </label>
+        </span>
+        <div
+          class=""
+          data-baseweb="form-control-container"
+        >
+          <div
+            class=""
+            data-baseweb="input"
+          >
+            <div
+              class=""
+            >
+              $
+            </div>
+            <div
+              class=""
+              data-baseweb="base-input"
+            >
+              <input
+                aria-invalid="false"
+                aria-required="false"
+                autocomplete="on"
+                class=""
+                id="tipAmount"
+                inputmode="decimal"
+                name=""
+                placeholder=""
+                type="text"
+                value="40.00"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <span
+          class=""
+        >
+          <label
+            class=""
+            data-baseweb="form-control-label"
+            for="tipPercentage"
+          >
+            Tip percentage
+          </label>
+        </span>
+        <div
+          class=""
+          data-baseweb="form-control-container"
+        >
+          <div
+            class=""
+            data-baseweb="input"
+          >
+            <div
+              class=""
+              data-baseweb="base-input"
+            >
+              <input
+                aria-invalid="false"
+                aria-required="false"
+                autocomplete="on"
+                class=""
+                id="tipPercentage"
+                inputmode="decimal"
+                name=""
+                placeholder=""
+                type="text"
+                value="20"
+              />
+            </div>
+            <div
+              class=""
+            >
+              %
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <span
+      class=""
+    >
+      <label
+        class=""
+        data-baseweb="form-control-label"
+        for="total"
+      >
+        Total
+      </label>
+    </span>
+    <div
+      class=""
+      data-baseweb="form-control-container"
+    >
+      <div
+        class=""
+        data-baseweb="input"
+      >
+        <div
+          class=""
+          data-baseweb="base-input"
+        >
+          <input
+            aria-invalid="false"
+            aria-required="false"
+            autocomplete="on"
+            class=""
+            id="total"
+            inputmode="text"
+            name=""
+            placeholder=""
+            type="text"
+            value="257.75"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class=""
+    >
+      <div>
+        <span
+          class=""
+        >
+          <label
+            class=""
+            data-baseweb="form-control-label"
+            for="perPersonAmount"
+          >
+            Per person
+          </label>
+        </span>
+        <div
+          class=""
+          data-baseweb="form-control-container"
+        >
+          <div
+            class=""
+            data-baseweb="input"
+          >
+            <div
+              class=""
+            >
+              $
+            </div>
+            <div
+              class=""
+              data-baseweb="base-input"
+            >
+              <input
+                aria-invalid="false"
+                aria-required="false"
+                autocomplete="on"
+                class=""
+                id="perPersonAmount"
+                inputmode="text"
+                name=""
+                placeholder=""
+                type="text"
+                value="128.88"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <span
+          class=""
+        >
+          <label
+            class=""
+            data-baseweb="form-control-label"
+            for="numberOfPersons"
+          >
+            Persons
+          </label>
+        </span>
+        <div
+          class=""
+          data-baseweb="form-control-container"
+        >
+          <div
+            class=""
+            data-baseweb="input"
+          >
+            <div
+              class=""
+              data-baseweb="base-input"
+            >
+              <input
+                aria-invalid="false"
+                aria-required="false"
+                autocomplete="on"
+                class=""
+                id="numberOfPersons"
+                inputmode="numeric"
+                name=""
+                placeholder=""
+                type="text"
+                value="2"
+              />
+            </div>
+            <div
+              class=""
+            >
+              👥
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`);
+});
+
 test("TipCalculator - enter amounts", () => {
   const { asFragment, container } = render(<TipCalculator />);
 
@@ -438,6 +864,11 @@ test("TipCalculator - enter amounts", () => {
       >
         <div
           class=""
+        >
+          $
+        </div>
+        <div
+          class=""
           data-baseweb="base-input"
         >
           <input
@@ -452,6 +883,17 @@ test("TipCalculator - enter amounts", () => {
             type="text"
             value="140"
           />
+        </div>
+        <div
+          class=""
+        >
+          <button
+            class=""
+            data-baseweb="button"
+            type="button"
+          >
+            +
+          </button>
         </div>
       </div>
     </div>

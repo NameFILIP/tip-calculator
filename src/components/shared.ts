@@ -28,5 +28,14 @@ export function humanFriendlyNumber(input: string | number): string {
   }
 
   // Round up the last cent which is how restaurants calculate it
-  return (Math.ceil(numInput * 100) / 100).toFixed(2);
+  return (Math.round(numInput * 100) / 100).toFixed(2);
+}
+
+export function calculateExpression(expression: string): string {
+  return expression
+    .split("+")
+    .map((number) => number.trim())
+    .filter(Boolean)
+    .reduce((sum, num) => sum + Number(num), 0)
+    .toString();
 }
