@@ -290,6 +290,11 @@ test("TipCalculator - enter percentages", () => {
       >
         <div
           class=""
+        >
+          $
+        </div>
+        <div
+          class=""
           data-baseweb="base-input"
         >
           <input
@@ -298,7 +303,7 @@ test("TipCalculator - enter percentages", () => {
             autocomplete="on"
             class=""
             id="total"
-            inputmode="text"
+            inputmode="decimal"
             name=""
             placeholder=""
             type="text"
@@ -701,6 +706,11 @@ test("TipCalculator - plus button", () => {
       >
         <div
           class=""
+        >
+          $
+        </div>
+        <div
+          class=""
           data-baseweb="base-input"
         >
           <input
@@ -709,7 +719,7 @@ test("TipCalculator - plus button", () => {
             autocomplete="on"
             class=""
             id="total"
-            inputmode="text"
+            inputmode="decimal"
             name=""
             placeholder=""
             type="text"
@@ -1106,6 +1116,11 @@ test("TipCalculator - enter amounts", () => {
       >
         <div
           class=""
+        >
+          $
+        </div>
+        <div
+          class=""
           data-baseweb="base-input"
         >
           <input
@@ -1114,7 +1129,7 @@ test("TipCalculator - enter amounts", () => {
             autocomplete="on"
             class=""
             id="total"
-            inputmode="text"
+            inputmode="decimal"
             name=""
             placeholder=""
             type="text"

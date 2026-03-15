@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { FormControl } from "baseui/form-control";
 import { Input } from "baseui/input";
@@ -45,6 +45,8 @@ export function TipCalculator() {
   );
 
   const [persons, setPersons] = useState<string>("1");
+  const [totalInput, setTotalInput] = useState<string>("");
+  const [isTotalEditing, setIsTotalEditing] = useState(false);
 
   const subtotalValue = calculateExpression(subtotal);
 
@@ -53,6 +55,12 @@ export function TipCalculator() {
     tipAmount,
     taxAmount,
   });
+
+  useEffect(() => {
+    if (!isTotalEditing) {
+      setTotalInput(total !== null ? humanFriendlyNumber(total) : "");
+    }
+  }, [total, isTotalEditing]);
 
   const handleClickPlus = () => {
     const trimmed = subtotal.trim();
@@ -149,7 +157,30 @@ export function TipCalculator() {
       />
 
       <FormControl label="Total">
-        <Input id="total" value={total ? humanFriendlyNumber(total) : ""} />
+        <Input
+          id="total"
+          inputMode="decimal"
+          startEnhancer="$"
+          value={totalInput}
+          onFocus={() => setIsTotalEditing(true)}
+          onBlur={() => setIsTotalEditing(false)}
+          onChange={(e) => {
+            const newTotalInput = e.target.value;
+            setTotalInput(newTotalInput);
+            const newTotal = Number(newTotalInput);
+            if (!isNaN(newTotal) && subtotalValue !== "" && taxAmount !== "") {
+              const newTip = newTotal - Number(subtotalValue) - Number(taxAmount);
+              if (newTip >= 0) {
+                setTipAmount(humanFriendlyNumber(newTip));
+                if (Number(subtotalValue) !== 0) {
+                  setTipPercentage(
+                    humanFriendlyNumber((newTip / Number(subtotalValue)) * 100)
+                  );
+                }
+              }
+            }
+          }}
+        />
       </FormControl>
 
       <div className={css({ display: "flex" })}>
