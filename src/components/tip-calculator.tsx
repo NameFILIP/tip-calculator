@@ -7,8 +7,6 @@ import { Button, KIND as BUTTON_KIND } from "baseui/button";
 import { AmountAndPercentage } from "./amount-and-percentage";
 import {
   humanFriendlyNumber,
-  leftInputOverrides,
-  rightInputOverrides,
   calculateExpression,
 } from "./shared";
 
@@ -43,8 +41,6 @@ export function TipCalculator() {
     "tipPercentage",
     ""
   );
-
-  const [persons, setPersons] = useState<string>("1");
 
   const subtotalValue = calculateExpression(subtotal);
 
@@ -152,36 +148,6 @@ export function TipCalculator() {
         <Input id="total" value={total ? humanFriendlyNumber(total) : ""} />
       </FormControl>
 
-      <div className={css({ display: "flex" })}>
-        <div>
-          <FormControl label="Per person">
-            <Input
-              id="perPersonAmount"
-              value={
-                total
-                  ? humanFriendlyNumber(Number(total) / Number(persons))
-                  : ""
-              }
-              startEnhancer="$"
-              overrides={leftInputOverrides}
-            />
-          </FormControl>
-        </div>
-        <div>
-          <FormControl label="Persons">
-            <Input
-              id="numberOfPersons"
-              inputMode="numeric"
-              value={persons}
-              onChange={(e) => {
-                setPersons(e.target.value);
-              }}
-              endEnhancer="👥"
-              overrides={rightInputOverrides}
-            />
-          </FormControl>
-        </div>
-      </div>
     </div>
   );
 }

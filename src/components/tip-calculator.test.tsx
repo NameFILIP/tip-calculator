@@ -13,14 +13,10 @@ test("TipCalculator - enter percentages", () => {
   fireEvent.change(screen.getByLabelText("Tip percentage"), {
     target: { value: "20" },
   });
-  fireEvent.change(screen.getByLabelText("Persons"), {
-    target: { value: "2" },
-  });
 
   expect(screen.getByLabelText("Tax amount")).toHaveValue("8.88");
   expect(screen.getByLabelText("Tip amount")).toHaveValue("20.00");
   expect(screen.getByLabelText("Total")).toHaveValue("128.88");
-  expect(screen.getByLabelText("Per person")).toHaveValue("64.44");
 
   expect(asFragment()).toMatchInlineSnapshot(`
 <DocumentFragment>
@@ -307,100 +303,6 @@ test("TipCalculator - enter percentages", () => {
         </div>
       </div>
     </div>
-    <div
-      class=""
-    >
-      <div>
-        <span
-          class=""
-        >
-          <label
-            class=""
-            data-baseweb="form-control-label"
-            for="perPersonAmount"
-          >
-            Per person
-          </label>
-        </span>
-        <div
-          class=""
-          data-baseweb="form-control-container"
-        >
-          <div
-            class=""
-            data-baseweb="input"
-          >
-            <div
-              class=""
-            >
-              $
-            </div>
-            <div
-              class=""
-              data-baseweb="base-input"
-            >
-              <input
-                aria-invalid="false"
-                aria-required="false"
-                autocomplete="on"
-                class=""
-                id="perPersonAmount"
-                inputmode="text"
-                name=""
-                placeholder=""
-                type="text"
-                value="64.44"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div>
-        <span
-          class=""
-        >
-          <label
-            class=""
-            data-baseweb="form-control-label"
-            for="numberOfPersons"
-          >
-            Persons
-          </label>
-        </span>
-        <div
-          class=""
-          data-baseweb="form-control-container"
-        >
-          <div
-            class=""
-            data-baseweb="input"
-          >
-            <div
-              class=""
-              data-baseweb="base-input"
-            >
-              <input
-                aria-invalid="false"
-                aria-required="false"
-                autocomplete="on"
-                class=""
-                id="numberOfPersons"
-                inputmode="numeric"
-                name=""
-                placeholder=""
-                type="text"
-                value="2"
-              />
-            </div>
-            <div
-              class=""
-            >
-              👥
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </DocumentFragment>
 `);
@@ -424,14 +326,10 @@ test("TipCalculator - plus button", () => {
   fireEvent.change(screen.getByLabelText("Tip percentage"), {
     target: { value: "20" },
   });
-  fireEvent.change(screen.getByLabelText("Persons"), {
-    target: { value: "2" },
-  });
 
   expect(screen.getByLabelText("Tax amount")).toHaveValue("17.75");
   expect(screen.getByLabelText("Tip amount")).toHaveValue("40.00");
   expect(screen.getByLabelText("Total")).toHaveValue("257.75");
-  expect(screen.getByLabelText("Per person")).toHaveValue("128.88");
 
   expect(asFragment()).toMatchInlineSnapshot(`
 <DocumentFragment>
@@ -718,100 +616,6 @@ test("TipCalculator - plus button", () => {
         </div>
       </div>
     </div>
-    <div
-      class=""
-    >
-      <div>
-        <span
-          class=""
-        >
-          <label
-            class=""
-            data-baseweb="form-control-label"
-            for="perPersonAmount"
-          >
-            Per person
-          </label>
-        </span>
-        <div
-          class=""
-          data-baseweb="form-control-container"
-        >
-          <div
-            class=""
-            data-baseweb="input"
-          >
-            <div
-              class=""
-            >
-              $
-            </div>
-            <div
-              class=""
-              data-baseweb="base-input"
-            >
-              <input
-                aria-invalid="false"
-                aria-required="false"
-                autocomplete="on"
-                class=""
-                id="perPersonAmount"
-                inputmode="text"
-                name=""
-                placeholder=""
-                type="text"
-                value="128.88"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div>
-        <span
-          class=""
-        >
-          <label
-            class=""
-            data-baseweb="form-control-label"
-            for="numberOfPersons"
-          >
-            Persons
-          </label>
-        </span>
-        <div
-          class=""
-          data-baseweb="form-control-container"
-        >
-          <div
-            class=""
-            data-baseweb="input"
-          >
-            <div
-              class=""
-              data-baseweb="base-input"
-            >
-              <input
-                aria-invalid="false"
-                aria-required="false"
-                autocomplete="on"
-                class=""
-                id="numberOfPersons"
-                inputmode="numeric"
-                name=""
-                placeholder=""
-                type="text"
-                value="2"
-              />
-            </div>
-            <div
-              class=""
-            >
-              👥
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </DocumentFragment>
 `);
@@ -829,14 +633,10 @@ test("TipCalculator - enter amounts", () => {
   fireEvent.change(screen.getByLabelText("Tip amount"), {
     target: { value: "25.20" },
   });
-  fireEvent.change(screen.getByLabelText("Persons"), {
-    target: { value: "3" },
-  });
 
   expect(screen.getByLabelText("Tax percentage")).toHaveValue("8.875");
   expect(screen.getByLabelText("Tip percentage")).toHaveValue("18");
   expect(screen.getByLabelText("Total")).toHaveValue("177.63");
-  expect(screen.getByLabelText("Per person")).toHaveValue("59.21");
 
   expect(asFragment()).toMatchInlineSnapshot(`
 <DocumentFragment>
@@ -1120,100 +920,6 @@ test("TipCalculator - enter amounts", () => {
             type="text"
             value="177.63"
           />
-        </div>
-      </div>
-    </div>
-    <div
-      class=""
-    >
-      <div>
-        <span
-          class=""
-        >
-          <label
-            class=""
-            data-baseweb="form-control-label"
-            for="perPersonAmount"
-          >
-            Per person
-          </label>
-        </span>
-        <div
-          class=""
-          data-baseweb="form-control-container"
-        >
-          <div
-            class=""
-            data-baseweb="input"
-          >
-            <div
-              class=""
-            >
-              $
-            </div>
-            <div
-              class=""
-              data-baseweb="base-input"
-            >
-              <input
-                aria-invalid="false"
-                aria-required="false"
-                autocomplete="on"
-                class=""
-                id="perPersonAmount"
-                inputmode="text"
-                name=""
-                placeholder=""
-                type="text"
-                value="59.21"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div>
-        <span
-          class=""
-        >
-          <label
-            class=""
-            data-baseweb="form-control-label"
-            for="numberOfPersons"
-          >
-            Persons
-          </label>
-        </span>
-        <div
-          class=""
-          data-baseweb="form-control-container"
-        >
-          <div
-            class=""
-            data-baseweb="input"
-          >
-            <div
-              class=""
-              data-baseweb="base-input"
-            >
-              <input
-                aria-invalid="false"
-                aria-required="false"
-                autocomplete="on"
-                class=""
-                id="numberOfPersons"
-                inputmode="numeric"
-                name=""
-                placeholder=""
-                type="text"
-                value="3"
-              />
-            </div>
-            <div
-              class=""
-            >
-              👥
-            </div>
-          </div>
         </div>
       </div>
     </div>
